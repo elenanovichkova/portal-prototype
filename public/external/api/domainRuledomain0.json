@@ -1,0 +1,42 @@
+{
+  "status": { "code": "03", "result": true, "reason": "Success" },
+  "rule": {
+    "id": "rule0",
+    "status": "active",
+    "createdBy": "elenanovichkova@gmail.com",
+    "created": "20-DEC-17",
+    "domainId": "domain0",
+    "orgId": "org0",
+    "data": [
+      {
+        "type": "FEIN",
+        "axactMatch": true,
+        "include": true,
+        "data": [
+          {
+            "value": "111111111"
+          },
+          {
+            "value": "222222222"
+          },
+          {
+            "value": "333333333"
+          }
+        ]
+      },
+      {
+        "type": "PAYERID",
+        "axactMatch": true,
+        "include": true,
+        "data": [
+          {
+            "value": "LIBERTY"
+          },
+          {
+            "value": "ICW"
+          }
+        ]
+      }
+    ]
+  }
+}

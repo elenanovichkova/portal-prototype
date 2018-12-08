@@ -1,0 +1,13 @@
+#payee-main td.details-control {
+  cursor: pointer;
+}
+
+#payee-main tr.shown td.details-control .fa-caret-square-o-right,
+#payee-main td.details-control .fa-caret-square-o-down {
+  display: none;
+}
+
+#payee-main td.details-control .fa-caret-square-o-righ,
+#payee-main tr.shown td.details-control .fa-caret-square-o-down {
+  display: inline;
+}

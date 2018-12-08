@@ -1,0 +1,235 @@
+{
+  "status": { "code": "01", "result": true, "reason": "Folders found" },
+  "data": [
+    {
+      "domain": {
+        "domID": "1000088578",
+        "domName": "FOLDER A",
+        "bankName": "",
+        "routingNbr": "",
+        "accountNbr": "",
+        "achStatus": "",
+        "achStatusDate": "",
+        "optin": false,
+        "disinfo": "",
+        "payers": []
+      },
+      "hasRule": true,
+      "childcnt": 10,
+      "eraID": "WEB",
+      "eraName": "Website Download",
+      "PSIonly": false,
+      "currBank": {
+        "ID": "111103333:111111111",
+        "bankId": "10:2kosy-7wa$gBankInfo",
+        "bankName": "FIRST NATL BANK OF BENTON",
+        "routingNbr": "111103333",
+        "accountNbr": "111111111",
+        "achStatus": "NEW",
+        "achStatusDate": "2018-11-08"
+      },
+      "pendBank": {
+        "ID": "",
+        "bankId": "",
+        "bankName": "",
+        "routingNbr": "",
+        "accountNbr": "",
+        "achStatus": "",
+        "achStatusDate": ""
+      },
+      "bitran": [
+        {
+          "ID": "Jopari:1005504020",
+          "scope": "DOM",
+          "tranStatus": "pending",
+          "noteStatus": "ADD",
+          "reqOnDate": "2018-11-26T12:43:53",
+          "changeOnDate": "2018-11-26",
+          "changeSeq": 1005504020,
+          "reqByName": "pamela_bellamy@Shepherd.org",
+          "allGrpTaxID": false,
+          "fromBI": {
+            "dbID": "",
+            "bankName": "",
+            "routingNbr": "",
+            "accountNbr": "",
+            "achStatus": ""
+          },
+          "toBI": {
+            "dbID": "",
+            "bankName": "FIRST NATL BANK OF BENTON",
+            "routingNbr": "111103333",
+            "accountNbr": "111111111",
+            "achStatus": ""
+          },
+          "fromDom": {
+            "domain": {
+              "domID": "",
+              "domName": "",
+              "bankName": "",
+              "routingNbr": "",
+              "accountNbr": "",
+              "achStatus": "",
+              "achStatusDate": "",
+              "optin": false,
+              "disinfo": "",
+              "payers": []
+            },
+            "childcnt": 0,
+            "eraID": "",
+            "eraName": "",
+            "PSIonly": false,
+            "currBank": {
+              "ID": "",
+              "bankId": "",
+              "bankName": "",
+              "routingNbr": "",
+              "accountNbr": "",
+              "achStatus": "",
+              "achStatusDate": ""
+            },
+            "pendBank": {
+              "ID": "",
+              "bankId": "",
+              "bankName": "",
+              "routingNbr": "",
+              "accountNbr": "",
+              "achStatus": "",
+              "achStatusDate": ""
+            },
+            "bitran": [],
+            "bankInfo": [],
+            "eraInfo": [],
+            "provs": [],
+            "cardInfo": []
+          },
+          "toDom": {
+            "domain": {
+              "domID": "",
+              "domName": "",
+              "bankName": "",
+              "routingNbr": "",
+              "accountNbr": "",
+              "achStatus": "",
+              "achStatusDate": "",
+              "optin": false,
+              "disinfo": "",
+              "payers": []
+            },
+            "childcnt": 0,
+            "eraID": "",
+            "eraName": "",
+            "PSIonly": false,
+            "currBank": {
+              "ID": "",
+              "bankId": "",
+              "bankName": "",
+              "routingNbr": "",
+              "accountNbr": "",
+              "achStatus": "",
+              "achStatusDate": ""
+            },
+            "pendBank": {
+              "ID": "",
+              "bankId": "",
+              "bankName": "",
+              "routingNbr": "",
+              "accountNbr": "",
+              "achStatus": "",
+              "achStatusDate": ""
+            },
+            "bitran": [],
+            "bankInfo": [],
+            "eraInfo": [],
+            "provs": [],
+            "cardInfo": []
+          },
+          "fromEra": {
+            "isActive": false,
+            "eraID": "",
+            "cnxName": "Website only",
+            "cnxType": "",
+            "cnxContact": {
+              "fullname": "",
+              "title": "",
+              "email": "",
+              "phone": "",
+              "fax": ""
+            },
+            "reqEFFDate": "",
+            "linkageType": "",
+            "linkage": "domain",
+            "ftpType": "",
+            "ftpDirection": ""
+          },
+          "toEra": {
+            "isActive": false,
+            "eraID": "",
+            "cnxName": "Website only",
+            "cnxType": "",
+            "cnxContact": {
+              "fullname": "",
+              "title": "",
+              "email": "",
+              "phone": "",
+              "fax": ""
+            },
+            "reqEFFDate": "",
+            "linkageType": "",
+            "linkage": "",
+            "ftpType": "",
+            "ftpDirection": ""
+          },
+          "fromOrg": "",
+          "toOrg": "Shepherd Center"
+        }
+      ],
+      "bankInfo": [],
+      "eraInfo": [],
+      "provs": [],
+      "cardInfo": []
+    },
+    {
+      "domain": {
+        "domID": "JSI:1005504026",
+        "domName": "FOLDER B",
+        "bankName": "",
+        "routingNbr": "",
+        "accountNbr": "",
+        "achStatus": "",
+        "achStatusDate": "",
+        "optin": false,
+        "disinfo": "",
+        "payers": []
+      },
+      "hasRule": false,
+      "childcnt": 0,
+      "eraID": "WEB",
+      "eraName": "Website Download",
+      "PSIonly": true,
+      "currBank": {
+        "ID": "",
+        "bankId": "",
+        "bankName": "",
+        "routingNbr": "",
+        "accountNbr": "",
+        "achStatus": "",
+        "achStatusDate": ""
+      },
+      "pendBank": {
+        "ID": "",
+        "bankId": "",
+        "bankName": "",
+        "routingNbr": "",
+        "accountNbr": "",
+        "achStatus": "",
+        "achStatusDate": ""
+      },
+      "bitran": [],
+      "bankInfo": [],
+      "eraInfo": [],
+      "provs": [],
+      "cardInfo": []
+    }
+  ]
+}
