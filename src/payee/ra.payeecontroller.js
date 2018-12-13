@@ -1,6 +1,12 @@
 import $ from "jquery";
 import DataTable from "datatables.net";
 import "datatables.net-dt/css/jquery.dataTables.css";
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+
+import RuleModal from "./containers/rule-modal.js";
+import store from "../store/store.js";
 
 var isInit = false,
   payeeTable;
@@ -87,6 +93,17 @@ var self = {
       var tr = $(this).closest("tr");
       var row = payeeTable.row(tr);
       console.log("domain ID", row.data().domain.domID);
+      ReactDOM.render(
+        <Provider store={store}>
+          <RuleModal
+            domainData={row.data()}
+            showModal={true}
+            contextTitle="CREATE NEW RULE"
+            action="new"
+          />
+        </Provider>,
+        document.getElementById("common-react-modal")
+      );
     });
 
     // Add event listener to view a rule
@@ -94,6 +111,19 @@ var self = {
       var tr = $(this).closest("tr");
       var row = payeeTable.row(tr);
       console.log("domain ID", row.data().domain.domID);
+      let modalProps = Object.assign({ showModal: true }, row.data());
+      console.log(modalProps);
+      ReactDOM.render(
+        <Provider store={store}>
+          <RuleModal
+            domainData={row.data()}
+            showModal={true}
+            contextTitle="VIEW RULE"
+            action="view"
+          />
+        </Provider>,
+        document.getElementById("common-react-modal")
+      );
     });
   },
   renderPayees: function(d) {

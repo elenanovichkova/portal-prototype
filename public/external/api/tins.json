@@ -1,0 +1,8 @@
+{
+  "data": [
+    { "text": "bug", "id": 1 },
+    { "text": "feature", "id": 2 },
+    { "text": "documents", "id": 3 },
+    { "text": "discussion", "id": 4 }
+  ]
+}

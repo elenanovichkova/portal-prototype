@@ -16,6 +16,7 @@
     "react-dom": "16.0.0",
     "react-modal": "^3.1.10",
     "react-redux": "^4.0.0",
+    "react-select2-wrapper": "^1.0.4-beta6",
     "react-tabs": "^2.1.0",
     "redux": "^3.0.4",
     "redux-form": "^7.3.0",

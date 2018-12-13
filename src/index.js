@@ -1,25 +1,17 @@
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import ReduxPromise from "redux-promise";
-import thunk from "redux-thunk";
-import { logger } from "redux-logger";
 import $ from "jquery";
 
-import reducers from "./reducers";
 import Payees from "./payee/ra.payeecontroller.js";
-
-const middleware = [thunk, ReduxPromise, logger];
-
-const createStoreWithMiddleWare = applyMiddleware(...middleware)(createStore);
+import store from "./store/store.js";
 
 const App = () => {
   $(function() {
     Payees.init();
   });
   return (
-    <Provider store={createStoreWithMiddleWare(reducers)}>
+    <Provider store={store}>
       <div>
         <div className="container">
           <div id="payees">

@@ -11,3 +11,8 @@
 #payee-main tr.shown td.details-control .fa-caret-square-o-down {
   display: inline;
 }
+
+.btn.btn-margin-left-right-15 {
+  margin-left: 15px;
+  margin-right: 15px;
+}
