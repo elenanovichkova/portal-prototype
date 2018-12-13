@@ -92,7 +92,38 @@ const RuleFormRedux = props => {
                 options={{
                   placeholder: "select npi",
                   tags: true,
-                  tokenSeparators: [",", " "]
+                  tokenSeparators: [",", " "],
+                  createTag: function(params) {
+                    // Don't offset to create a tag if there is no @
+                    console.log("params", params.term);
+                    let npi = params.term;
+                    var tmp;
+                    var sum;
+                    var i;
+                    var j;
+                    i = npi.length;
+                    if (i == 15 && npi.indexOf("80840", 0, 5) == 0) sum = 0;
+                    else if (i == 10) sum = 24;
+                    else return false;
+                    j = 0;
+                    while (i != 0) {
+                      tmp = npi.charCodeAt(i - 1) - "0".charCodeAt(0);
+                      if (j++ % 2 != 0) {
+                        if ((tmp <<= 1) > 9) {
+                          tmp -= 10;
+                          tmp++;
+                        }
+                      }
+                      sum += tmp;
+                      i--;
+                    }
+                    if (sum % 10 == 0)
+                      return {
+                        id: params.term,
+                        text: params.term
+                      };
+                    else return null;
+                  }
                 }}
               />
             </div>
