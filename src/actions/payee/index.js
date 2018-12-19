@@ -5,7 +5,7 @@ import { SubmissionError } from "redux-form";
 const ROOT_URL = "external/api";
 
 export function getDomainRule(domainId) {
-  let url = `${ROOT_URL}/domainRuledomain0.json`;
+  let url = `${ROOT_URL}/domainRuledomain1.json`;
   console.log(domainId);
   //let request = axios.get(url);
   //action creator, it needs to return an action, an object with a type property

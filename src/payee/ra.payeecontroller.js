@@ -111,8 +111,6 @@ var self = {
       var tr = $(this).closest("tr");
       var row = payeeTable.row(tr);
       console.log("domain ID", row.data().domain.domID);
-      let modalProps = Object.assign({ showModal: true }, row.data());
-      console.log(modalProps);
       ReactDOM.render(
         <Provider store={store}>
           <RuleModal

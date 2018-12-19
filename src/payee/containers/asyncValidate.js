@@ -1,12 +1,24 @@
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+import axios from "axios";
 
-const asyncValidate = (values /*, dispatch */) => {
-  return sleep(1000) // simulate server latency
+const asyncValidate = (values /*, dispatch, props, blurredField*/) => {
+  let url = "external/api/asyncvalidatenpi.json";
+  return axios.get(url).then(response => {
+    console.log(response);
+    if (response.status === 200 && response.data.isValid) {
+      let error = {
+        npis: response.data.message
+      };
+      throw error;
+    }
+  });
+
+  /*sleep(1000) // simulate server latency
     .then(() => {
-      if (["john", "paul", "george", "ringo"].includes(values.username)) {
-        throw { username: "That username is taken" };
+      console.log("**************   async validating", values.npis);
+      if (["2223334445"].includes("2223334445")) {
+        throw { npis: "NPI is not valid" };
       }
-    });
+    });*/
 };
 
 export default asyncValidate;

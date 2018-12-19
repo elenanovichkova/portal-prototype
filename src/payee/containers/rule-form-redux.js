@@ -1,41 +1,27 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, formValueSelector } from "redux-form";
+import { connect } from "react-redux";
 import validate from "./validate";
 import asyncValidate from "./asyncValidate";
 import Select2wrap from "../components/select2wrap.js";
-import Select from "../components/select-field.js";
+import Select2tokenwrap from "../components/select2tokenwrap.js";
 
-const renderField = ({
-  input,
-  label,
-  type,
-  meta: { asyncValidating, touched, error }
-}) => (
-  <div>
-    <label>{label}</label>
-    <div className={asyncValidating ? "async-validating" : ""}>
-      <input {...input} type={type} placeholder={label} />
-      {touched && error && <span>{error}</span>}
-    </div>
-  </div>
-);
+import { validateNpi, required } from "../../validators.js";
 
-const RuleFormRedux = props => {
-  const { handleSubmit, pristine, reset, submitting } = props;
-  console.log("registereTINs", props.registeredTins);
+let RuleFormRedux = props => {
+  const { handleSubmit, pristine, reset, submitting, invalid } = props;
+  console.log("async validate", props.asyncValidate);
   return (
-    <form onSubmit={handleSubmit}>
+    <form id="enroll-payee-rule-form" onSubmit={handleSubmit}>
       <div className="form-group">
-        <label>
-          * TIN (All available payees with a selected TIN will be auto-enrolled
-          for EFT going forward)
-        </label>
         <div>
           <Field
             name="tins"
+            label={`* TIN (All available payees with a selected TIN will be auto-enrolled for EFT going forward)`}
             data={props.registeredTins}
             multiple={true}
             component={Select2wrap}
+            validate={[required]}
             options={{
               placeholder: "search tins"
             }}
@@ -43,13 +29,10 @@ const RuleFormRedux = props => {
         </div>
       </div>
       <div className="form-group">
-        <label>
-          * INCLUDE PAYERS (Selected TINs above will be auto-enrolled for EFT
-          with these payers going forward)
-        </label>
         <div>
           <Field
             name="payers"
+            label={`* INCLUDE PAYERS (Selected TINs above will be auto-enrolled for EFT with these payers going forward)`}
             data={props.payers}
             multiple={true}
             component={Select2wrap}
@@ -59,103 +42,101 @@ const RuleFormRedux = props => {
           />
         </div>
       </div>
-      <div className="form-group">
-        <div className="row">
-          <div className="col-md-2">
-            <label>NPI</label>
-            <div>
-              <Field
-                name="includenpi"
-                multiple={false}
-                data={[
-                  { text: "include", id: "include" },
-                  { text: "exclude", id: "exclude" }
-                ]}
-                component={Select2wrap}
-                options={{
-                  placeholder: "select",
-                  minimumResultsForSearch: "Infinity"
-                }}
-              />
-            </div>
+
+      <div className="row">
+        <div className="col-md-2">
+          <div className="form-group">
+            <Field
+              name="includenpi"
+              label={`NPI`}
+              multiple={false}
+              data={[
+                { text: "SELECT", id: "NONE" },
+                { text: "INCLUDE", id: "INCLUDE" },
+                { text: "EXCLUDE", id: "EXCLUDE" }
+              ]}
+              component={Select2wrap}
+              options={{
+                placeholder: "select",
+                minimumResultsForSearch: "Infinity"
+              }}
+            />
           </div>
-          <div className="col-md-10">
-            <label>
-              If a payer does not provide NPIs, any designated NPI rules may not
-              apply
-            </label>
-            <div>
-              <Field
-                name="npis"
-                multiple={true}
-                component={Select2wrap}
-                options={{
-                  placeholder: "select npi",
-                  tags: true,
-                  tokenSeparators: [",", " "],
-                  createTag: function(params) {
-                    // Don't offset to create a tag if there is no @
-                    console.log("params", params.term);
-                    let npi = params.term;
-                    var tmp;
-                    var sum;
-                    var i;
-                    var j;
-                    i = npi.length;
-                    if (i == 15 && npi.indexOf("80840", 0, 5) == 0) sum = 0;
-                    else if (i == 10) sum = 24;
-                    else return false;
-                    j = 0;
-                    while (i != 0) {
-                      tmp = npi.charCodeAt(i - 1) - "0".charCodeAt(0);
-                      if (j++ % 2 != 0) {
-                        if ((tmp <<= 1) > 9) {
-                          tmp -= 10;
-                          tmp++;
-                        }
-                      }
-                      sum += tmp;
-                      i--;
-                    }
-                    if (sum % 10 == 0)
-                      return {
-                        id: params.term,
-                        text: params.term
+        </div>
+        <div className="col-md-10">
+          <div className="from-group">
+            <Field
+              name="npis"
+              label={`If a payer does not provide NPIs, any designated NPI rules may not apply`}
+              multiple={true}
+              data={
+                props.initialValues && props.initialValues.npis
+                  ? props.initialValues.npis.map(npi => {
+                      let option = {
+                        id: npi,
+                        text: npi
                       };
-                    else return null;
-                  }
-                }}
-              />
-            </div>
+                      return option;
+                    })
+                  : []
+              }
+              component={Select2tokenwrap}
+              createTag={validateNpi}
+              options={{
+                placeholder: "enter NPI",
+                tags: true,
+                tokenSeparators: [",", " "]
+              }}
+            />
           </div>
         </div>
       </div>
       <div className="form-group">
-        <div className="row">
-          <button
-            className="btn btn-primary btn-margin-left-right-15"
-            type="submit"
-            disabled={submitting}
-          >
-            VALIDATE RULE
-          </button>
+        <div className="row text-center">
           <button
             className="btn btn-default btn-margin-left-right-15"
             type="button"
             disabled={pristine || submitting}
             onClick={reset}
           >
-            CLEAR VALUES
+            UNDO CHAGES
+          </button>
+          <button
+            type="button"
+            className="btn btn-default btn-margin-left-right-15"
+            onClick={() => props.handleCloseModal(props)}
+          >
+            CANCEL
+          </button>
+          <button
+            className="btn btn-primary btn-margin-left-right-15"
+            type="submit"
+            disabled={pristine || submitting || invalid}
+          >
+            VALIDATE RULE
           </button>
         </div>
+      </div>
+      <div className="form-group">
+        <p className="rule-form-required-field-message">
+          * This fields are required
+        </p>
       </div>
     </form>
   );
 };
 
-export default reduxForm({
-  form: "rule-redux-form", // a unique identifier for this form
+RuleFormRedux = reduxForm({
+  form: "wizard-rule-form", // a unique identifier for this form
   validate,
+  touchOnChange: true,
+  touchOnBlur: true,
   asyncValidate,
-  asyncBlurFields: ["username"]
+  asyncChangeFields: ["npis"],
+  destroyOnUnmount: false,
+  forceUnregisterOnUnmount: true
 })(RuleFormRedux);
+
+export default connect(state => ({
+  initialValues: state.payee.domainRule.data
+}))(RuleFormRedux);

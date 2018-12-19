@@ -1,0 +1,19 @@
+{
+  "status": { "code": "03", "result": true, "reason": "Success" },
+  "rule": {
+    "id": "",
+    "status": "",
+    "createdBy": "",
+    "created": "",
+    "deletedBy": "",
+    "deleted": "",
+    "changedBy": "",
+    "changed": "",
+    "domainId": "domain0",
+    "orgId": "org0",
+    "includenpi": "",
+    "tins": [],
+    "payers": [],
+    "npis": []
+  }
+}

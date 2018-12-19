@@ -2,9 +2,15 @@ import React from "react";
 import Select2 from "react-select2-wrapper";
 import "react-select2-wrapper/css/select2.css";
 
-class Select2wrap extends React.Component {
+class Select2tokenwrap extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      options: { ...props.options, createTag: props.createTag }
+    };
+  }
+
   render() {
-    console.log("select props", this.props);
     return (
       <div
         className={`${
@@ -21,13 +27,11 @@ class Select2wrap extends React.Component {
         <Select2
           name={this.props.input.name}
           className={`form-control ${this.props.input.name}-form-control`}
+          data={this.props.data}
           multiple={this.props.multiple}
           value={this.props.input.value}
           onChange={this.props.input.onChange}
-          onOpen={this.props.input.onFocus}
-          onBlur={this.props.input.onBlur}
-          data={this.props.data}
-          options={this.props.options}
+          options={this.state.options}
         />
         {this.props.meta.touched && this.props.meta.error && (
           <span className="field-error-message">{this.props.meta.error}</span>
@@ -37,4 +41,4 @@ class Select2wrap extends React.Component {
   }
 }
 
-export default Select2wrap;
+export default Select2tokenwrap;

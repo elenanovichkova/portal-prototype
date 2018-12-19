@@ -5,38 +5,21 @@
     "status": "active",
     "createdBy": "elenanovichkova@gmail.com",
     "created": "20-DEC-17",
+    "deletedBy": "",
+    "deleted": "",
+    "changedBy": "",
+    "changed": "",
     "domainId": "domain0",
     "orgId": "org0",
-    "data": [
-      {
-        "type": "FEIN",
-        "axactMatch": true,
-        "include": true,
-        "data": [
-          {
-            "value": "111111111"
-          },
-          {
-            "value": "222222222"
-          },
-          {
-            "value": "333333333"
-          }
-        ]
-      },
-      {
-        "type": "PAYERID",
-        "axactMatch": true,
-        "include": true,
-        "data": [
-          {
-            "value": "LIBERTY"
-          },
-          {
-            "value": "ICW"
-          }
-        ]
-      }
+    "includenpi": "EXCLUDE",
+    "tins": [
+      { "text": "111111111", "id": 111111111 },
+      { "text": "222222222", "id": 222222222 }
+    ],
+    "payers": [{ "text": "MMO", "id": "MMO" }, { "text": "MHS", "id": "MHS" }],
+    "npis": [
+      { "text": "1234567893", "id": "1234567893" },
+      { "text": "2223334444", "id": "2223334444" }
     ]
   }
 }
