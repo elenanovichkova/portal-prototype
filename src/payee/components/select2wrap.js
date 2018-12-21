@@ -4,11 +4,13 @@ import "react-select2-wrapper/css/select2.css";
 
 class Select2wrap extends React.Component {
   render() {
-    console.log("select props", this.props);
     return (
       <div
         className={`${
-          this.props.meta.touched && this.props.meta.error ? "has-error" : ""
+          (this.props.meta.touched || this.props.showNotTouchedErrors) &&
+          this.props.meta.error
+            ? "has-error"
+            : ""
         }`}
       >
         <label
@@ -29,9 +31,10 @@ class Select2wrap extends React.Component {
           data={this.props.data}
           options={this.props.options}
         />
-        {this.props.meta.touched && this.props.meta.error && (
-          <span className="field-error-message">{this.props.meta.error}</span>
-        )}
+        {(this.props.meta.touched || this.props.showNotTouchedErrors) &&
+          this.props.meta.error && (
+            <span className="field-error-message">{this.props.meta.error}</span>
+          )}
       </div>
     );
   }

@@ -7,6 +7,13 @@ const validate = values => {
   if (values.payers && values.payers.length === 0) {
     errors.payers = "Required";
   }
+
+  if (
+    (!values.includenpi || values.includenpi === "NONE") &&
+    (values.npis && values.npis.length !== 0)
+  ) {
+    errors.includenpi = "Required if NPIs are selected";
+  }
   console.log("errors", errors);
   return errors;
 };

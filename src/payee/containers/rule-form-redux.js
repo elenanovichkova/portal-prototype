@@ -2,11 +2,12 @@ import React from "react";
 import { Field, reduxForm, formValueSelector } from "redux-form";
 import { connect } from "react-redux";
 import validate from "./validate";
-import asyncValidate from "./asyncValidate";
 import Select2wrap from "../components/select2wrap.js";
 import Select2tokenwrap from "../components/select2tokenwrap.js";
 
 import { validateNpi, required } from "../../validators.js";
+
+const selector = formValueSelector("wizard-rule-form");
 
 let RuleFormRedux = props => {
   const { handleSubmit, pristine, reset, submitting, invalid } = props;
@@ -50,6 +51,7 @@ let RuleFormRedux = props => {
               name="includenpi"
               label={`NPI`}
               multiple={false}
+              showNotTouchedErrors={true}
               data={[
                 { text: "SELECT", id: "NONE" },
                 { text: "INCLUDE", id: "INCLUDE" },
@@ -69,17 +71,8 @@ let RuleFormRedux = props => {
               name="npis"
               label={`If a payer does not provide NPIs, any designated NPI rules may not apply`}
               multiple={true}
-              data={
-                props.initialValues && props.initialValues.npis
-                  ? props.initialValues.npis.map(npi => {
-                      let option = {
-                        id: npi,
-                        text: npi
-                      };
-                      return option;
-                    })
-                  : []
-              }
+              initialValues={props.initialValues.npis}
+              selectedData={props.npis}
               component={Select2tokenwrap}
               createTag={validateNpi}
               options={{
@@ -131,12 +124,16 @@ RuleFormRedux = reduxForm({
   validate,
   touchOnChange: true,
   touchOnBlur: true,
-  asyncValidate,
-  asyncChangeFields: ["npis"],
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true
 })(RuleFormRedux);
 
-export default connect(state => ({
-  initialValues: state.payee.domainRule.data
-}))(RuleFormRedux);
+export default connect(state => {
+  const npis = selector(state, "npis");
+  const includenpi = selector(state, "includenpi");
+  return {
+    initialValues: state.payee.domainRule.data,
+    npis,
+    includenpi
+  };
+})(RuleFormRedux);

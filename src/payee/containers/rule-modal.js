@@ -97,10 +97,10 @@ class RuleModal extends Component {
                 domainData={this.props.domainData}
                 handleCloseModal={props => {
                   this.handleCloseModal();
-                  /*props.destroy();*/
+                  /*props.destroy("wizard-rule-form");*/
                 }}
                 onSubmit={(values, dispatch, props) => {
-                  /*props.destroy();*/
+                  /*props.destroy("wizard-rule-form");*/
                   this.handleCloseModal();
                 }}
               />
@@ -113,7 +113,7 @@ class RuleModal extends Component {
                   console.log("submitting from -values", values);
                   console.log("submitting from dispatch", dispatch);
                   console.log("submitting from -values", props);
-                  props.destroy();
+                  //props.destroy("wizard-rule-form");
                   this.handleCloseModal();
                 }}
               />
